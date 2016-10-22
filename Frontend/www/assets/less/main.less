@@ -1,3 +1,82 @@
 @mainColor: blue;
 
+@color_style: #EA862E;
+
+
+
 @import "pizza/pizza-card";
+
+body {
+    background-color: #FFFFF5;
+}
+
+.panel-right {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: green;
+    margin-left: 200px;
+    z-index: 99999;
+}
+
+.main-content {
+    margin-top: 100px;
+    padding-right: 300px;
+}
+
+/**>>>NAVIGATION BAR*/
+.navigation {
+    height: 90px;
+    background-color: rgba(0,0,0,0.9);
+}
+/*****NAVIGATION BAR*/
+
+/*>>>TOP NAVIGATION (PIZZA'S FILTER)*/
+.pizzas-filters h2{
+    text-align: center;
+}
+
+.pizzas-filters h2>span{
+    background-color: @color_style;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 51%;
+}
+
+.pizza-type > ul {
+    list-style: none;
+    margin: 0 0 10px 0;
+    padding: 0;
+    text-align: center;
+}
+
+.pizza-type > ul > li {
+    display: inline-block;
+
+    padding-right: 5px;
+    padding-left: 5px;
+}
+/*TOP NAVIGATION*/
+
+
+
+/*>>>>FOOTER*/
+.footer {
+    padding-top: 50px;
+    border-top: 1px solid #C8C2C2;
+    width: 100%;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    padding-right: 350px;
+}
+
+.footer p {
+    text-align: center;
+    color: #918C8C;
+}
+/******FOOTER*/
