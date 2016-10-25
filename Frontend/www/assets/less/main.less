@@ -33,8 +33,45 @@ body {
 
 /**>>>NAVIGATION BAR*/
 .navigation {
-    height: 90px;
+    min-height: 90px;
     background-color: rgba(0,0,0,0.9);
+    padding-left: 130px;
+    padding-right: 320px;
+    button {
+        float: right;
+        margin-top: -12px;
+        background-color: @color_style;
+    }
+}
+
+.ad-inform {
+    padding-top: 17px;
+    border-bottom: 1px solid #827F7C;
+    margin-bottom: 8px;
+    :first-child {
+        font-size: 20px;
+    }
+    color: #827F7C;
+    * {
+        padding-right: 15px;
+    }
+}
+
+@media only screen and (max-width: 710px) {
+    .ad-inform {
+        :first-child {
+            font-size: 17px;
+        }
+        button {
+            margin-top: 8px;
+        }
+    }
+
+}
+
+.first-header-floor {
+    color: white;
+    font-size: 17px;
 }
 /*****NAVIGATION BAR*/
 
@@ -77,6 +114,7 @@ body {
     padding-bottom: 50px;
     padding-top: 50px;
     padding-right: 350px;
+    background-color: #fff;
 }
 
 .footer p {
@@ -114,7 +152,7 @@ body {
 }
 
 .label-square span{
-    font-size: 30px;
+    font-size: 27px;
 }
 
 .bottom-label {
@@ -123,11 +161,11 @@ body {
     .label-square{
         font-size: 13px;
         font-weight: bolder;
-        height: 125px;
+        height: 120px;
         hr {
             border: 1px dashed #825D38;
             margin-top: 5px;
-            margin-bottom: 5px;
+            margin-bottom: 7px;
             width: 80%;
         }
     }
