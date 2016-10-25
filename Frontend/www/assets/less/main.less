@@ -76,8 +76,11 @@ body {
 /*****NAVIGATION BAR*/
 
 /*>>>TOP NAVIGATION (PIZZA'S FILTER)*/
-.pizzas-filters h2{
-    text-align: center;
+.pizzas-filters {
+    margin-bottom: 40px;
+    h2{
+        text-align: center;
+    }
 }
 
 .pizzas-filters h2>span{
@@ -85,22 +88,36 @@ body {
     color: white;
     font-size: 12px;
     font-weight: bold;
-    padding: 3px;
-    border-radius: 51%;
+    padding: 5px;
+    border-radius: 50%;
+    margin-top: -10px;
 }
 
 .pizza-type > ul {
     list-style: none;
-    margin: 0 0 10px 0;
+    margin: 20px 0 10px 0;
     padding: 0;
     text-align: center;
 }
 
-.pizza-type > ul > li {
+.pizza-type  ul  li {
     display: inline-block;
-
-    padding-right: 5px;
-    padding-left: 5px;
+    cursor: pointer;
+    
+    a {
+        color: @color_style;
+        text-decoration: none;
+        padding: 10px;
+    }
+    :hover {
+        background-color:#F0EDED;
+        border-radius: 3px;
+    }
+    :focus {
+        background-color: @color_style;
+        color: white;
+        border-radius: 4px;
+    }
 }
 /*TOP NAVIGATION*/
 
