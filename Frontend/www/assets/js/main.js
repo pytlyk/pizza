@@ -186,7 +186,7 @@ var ejs = require('ejs');
 
 exports.PizzaMenu_OneItem = ejs.compile("<%\n\nfunction getIngredientsArray(pizza) {\n    //Отримує вміст піци\n    var content = pizza.content;\n    var result = [];\n\n    //Object.keys повертає масив ключів в об’єкті JavaScript\n\n    Object.keys(content).forEach(function(key){\n\n        //a.concat(b) створює спільний масив із масивів a та b\n        result = result.concat(content[key]);\n    });\n\n    return result;\n}\n\n   %>\n\n<div class=\"col-md-6 col-lg-4\">\n    <div class=\"thumbnail pizza-card\">\n        <img src=\"<%= pizza.icon %>\">\n        <% if(pizza.is_new) { %>\n            <h3 class=\"pizza-label\">\n                <span class=\"label label-danger\">Нова</span>\n            </h3>\n        <% } else if(pizza.is_popular) {%>\n            <h3 class=\"pizza-label\">\n                <span class=\"label label-success\">Популярна</span>\n            </h3>\n        <% } %>\n        <div class=\"caption\">\n            <h3><%= pizza.title %></h3>\n            <div class=\"type\"><%= pizza.type %></div>\n            \n            <div class=\"description\">\n                <p><%= getIngredientsArray(pizza).join(\", \") %></p>\n            </div>\n            <div class=\"row\">\n                <% if (pizza.small_size) {%>\n                    <div class=\"col-sm-6 small-pizza\">\n                        <img src=\"assets/images/size-icon.svg\"><span><%= pizza.small_size.size %></span><br>\n                        <img src=\"assets/images/weight.svg\"><span><%= pizza.small_size.weight %></span><br>\n                        <div class=\"price\">\n                            <h2 class=\"price-value\"><%= pizza.small_size.price %></h2>\n                            <span>грн.</span>\n                        </div>\n                        <a role=\"button\" class=\"btn btn-warning buy-small\">Купити</a>\n                    </div>\n                <% } %>\n\n\n                <% if( pizza.big_size) { %>\n                    <div class=\"col-sm-6 large-pizza\">\n                        <img src=\"assets/images/size-icon.svg\"><span><%= pizza.big_size.size %></span><br>\n                        <img src=\"assets/images/weight.svg\"><span><%= pizza.big_size.weight %></span><br>\n                        <div class=\"price\">\n                            <h2 class=\"price-value\"><%= pizza.big_size.price %></h2>\n                            <span>грн.</span>\n                        </div>\n                        <a role=\"button\" class=\"btn btn-warning buy-big\">Купити</a>\n                    </div>\n                <% } %>\n            </div>\n        </div>\n    </div>\n</div>");
 
-exports.PizzaCart_OneItem = ejs.compile("<div class=\"pizza-ordered-card\">\n    <div class=\"pizza-header\">\n        <h4><%= pizza.title %> (<%= size %>)</h4>\n        <div class=\"pizza-attribute\">\n            <img src=\"assets/images/size-icon.svg\"><span><%= pizza[size].size %></span>\n            <img src=\"assets/images/weight.svg\"><span><%= pizza[size].weight %></span><br>\n        </div>\n    </div>\n    <div class=\"order-text\">\n        <div class=\"price-box\">\n            <span class=\"price label\"><%= pizza[size].price %> грн.</span>\n            <button class=\"btn btn-danger btn-xs btn-circle minus\">\n                <i class=\"glyphicon glyphicon-minus\"></i>\n            </button>\n            <span class=\"label pizza-counter\"></span>\n            <button class=\"btn btn-success btn-xs btn-circle plus\">\n                <i class=\"glyphicon glyphicon-plus\"></i>\n            </button>\n            <button class=\"btn btn-default btn-xs btn-circle btn-delete cancel\">\n                <i class=\"glyphicon glyphicon-remove\"></i>\n            </button>\n        </div>\n        <div class=\"pizza-image\">\n            <img src=\"<%= pizza.icon %>\" >\n        </div>\n    </div>\n</div>");
+exports.PizzaCart_OneItem = ejs.compile("<div class=\"pizza-ordered-card\">\n    <div class=\"pizza-header\">\n        <h4><%= pizza.title %> (<%= (size==\"small_size\")?\"мала\":\"велика\" %>)</h4>\n        <div class=\"pizza-attribute\">\n            <img src=\"assets/images/size-icon.svg\"><span><%= (size==\"small_size\")?\"мала\":\"велика\" %></span>\n            <img src=\"assets/images/weight.svg\"><span><%= pizza[size].weight %></span><br>\n        </div>\n    </div>\n    <div class=\"order-text\">\n        <div class=\"price-box\">\n            <span class=\"price label\"><%= pizza[size].price %> грн.</span>\n            <button class=\"btn btn-danger btn-xs btn-circle minus\">\n                <i class=\"glyphicon glyphicon-minus\"></i>\n            </button>\n            <span class=\"label pizza-counter\"></span>\n            <button class=\"btn btn-success btn-xs btn-circle plus\">\n                <i class=\"glyphicon glyphicon-plus\"></i>\n            </button>\n            <button class=\"btn btn-default btn-xs btn-circle btn-delete cancel\">\n                <i class=\"glyphicon glyphicon-remove\"></i>\n            </button>\n        </div>\n        <div class=\"pizza-image\">\n            <img src=\"<%= pizza.icon %>\" >\n        </div>\n    </div>\n</div>");
 
 },{"ejs":8}],3:[function(require,module,exports){
 /**
@@ -227,9 +227,9 @@ var $cart = $(".order-list");
 
 function addToCart(pizza, size) {
     //Додавання однієї піци в кошик покупок
-
+    console.log(size);
     //Приклад реалізації, можна робити будь-яким іншим способо
-    var excistenPizza = pizza_excist(pizza);
+    var excistenPizza = pizza_excist(pizza, size);
     if (excistenPizza) {
         excistenPizza["quantity"]++;
     } else {
@@ -243,10 +243,10 @@ function addToCart(pizza, size) {
     updateCart();
 }
 
-function pizza_excist(pizza) {
+function pizza_excist(pizza, size) {
     var bool;
     Cart.forEach(function(pizzaInCart){
-        if(pizzaInCart["pizza"]["id"] === pizza["id"])
+        if(pizzaInCart["pizza"]["id"] === pizza["id"] && pizzaInCart["size"] === size)
             bool = pizzaInCart;
     });
     return bool;

@@ -18,9 +18,9 @@ var $cart = $(".order-list");
 
 function addToCart(pizza, size) {
     //Додавання однієї піци в кошик покупок
-
+    console.log(size);
     //Приклад реалізації, можна робити будь-яким іншим способо
-    var excistenPizza = pizza_excist(pizza);
+    var excistenPizza = pizza_excist(pizza, size);
     if (excistenPizza) {
         excistenPizza["quantity"]++;
     } else {
@@ -34,10 +34,10 @@ function addToCart(pizza, size) {
     updateCart();
 }
 
-function pizza_excist(pizza) {
+function pizza_excist(pizza, size) {
     var bool;
     Cart.forEach(function(pizzaInCart){
-        if(pizzaInCart["pizza"]["id"] === pizza["id"])
+        if(pizzaInCart["pizza"]["id"] === pizza["id"] && pizzaInCart["size"] === size)
             bool = pizzaInCart;
     });
     return bool;
