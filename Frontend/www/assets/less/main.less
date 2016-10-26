@@ -82,25 +82,24 @@ body {
     margin: 20px 0 10px 0;
     padding: 0;
     text-align: center;
-}
-
-.pizza-type  ul  li {
-    display: inline-block;
-    cursor: pointer;
-    padding-bottom: 20px;
-    a {
-        color: @color_style;
-        text-decoration: none;
-        padding: 10px;
-    }
-    :hover {
-        background-color:#F0EDED;
-        border-radius: 3px;
-    }
-    :focus {
-        background-color: @color_style;
-        color: white;
-        border-radius: 4px;
+    li {
+        display: inline-block;
+        cursor: pointer;
+        padding-bottom: 20px;
+        a {
+            color: @color_style;
+            text-decoration: none;
+            padding: 10px;
+        }
+        :hover {
+            background-color:#F0EDED;
+            border-radius: 3px;
+        }
+        .active {
+            background-color: @color_style;
+            color: white;
+            border-radius: 4px;
+        }
     }
 }
 
@@ -198,7 +197,7 @@ body {
 
     .price.label {
         padding-left: 0!important;
-        }
+    }
 
     .pizza-ordered-card {
         position: relative;
