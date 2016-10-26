@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Pizza</title>
+    <title>Піца в Києві</title>
 
     <!-- Bootsrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -22,8 +22,6 @@
     <img src="assets/images/discount.svg">
 </div>
 
-<div class="container">
-
     <nav class="navbar navbar-inverse navbar-fixed-top navigation">
         <div class="ad-inform">
             <div class="visible-xs-inline-block visible-sm-inline-block visible-lg-inline-block visible-md-inline-block">(044) 222 5 222</div>
@@ -36,15 +34,14 @@
         </div>
     </nav>
 
+<div class="container-fluid">
+
     <div class="main-content">
-        <div class="panel-right">
-            
-        </div>
         <div class="pizzas-filters">
             <div class="title">
                 <h2>
                 Усі піци
-                <span class="pizza-counter">8</span>
+                <span class="pizza-counter tag">8</span>
                 </h2>
             </div>
             <div class="pizza-type">
@@ -58,24 +55,44 @@
                 </ul>
             </div>
         </div>
+        
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-md-6 col-lg-4">
                 <div class="thumbnail pizza-card">
                     <img src="assets/images/pizza_1.jpg">
 
-                    <div class="caption"><h3>Thumbnail label</h3>
-
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                        <p>
-                            <a href="#" class="btn btn-primary">Button 2</a>
-                            <a href="#" class="btn btn-default">Button 1</a>
-                        </p>
+                    <div class="caption">
+                        <h3>Імпреза</h3>
+                        <div class="type">М’ясна піца</div>
+                        <div class="description">
+                            <p>Балик, салямі, курка, сир, моцарела, сир рокфорд, ананас,
+                                томатна паста, петрушка</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 small-pizza">
+                                <img src="assets/images/size-icon.svg"><span>30</span></br>
+                                <img src="assets/images/weight.svg"><span>370</span></br>
+                                <div class="price">
+                                    <h2 class="price-value">99</h2>
+                                    <span>грн.</span>
+                                </div>
+                                <a href="" role="button" class="btn btn-warning">Купити</a>
+                            </div>
+                            <div class="col-sm-6 large-pizza">
+                                <img src="assets/images/size-icon.svg"><span>30</span></br>
+                                <img src="assets/images/weight.svg"><span>370</span></br>
+                                <div class="price">
+                                    <h2 class="price-value">99</h2>
+                                    <span>грн.</span>
+                                </div>
+                                <a href="" role="button" class="btn btn-warning">Купити</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-6 col-md-4">
+            <!--<div class="col-md-6 col-lg-4">
                 <div class="thumbnail pizza-card">
                     <img src="assets/images/pizza_2.jpg">
 
@@ -91,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-6 col-md-4">
+            <div class="col-md-6 col-lg-4">
                 <div class="thumbnail pizza-card">
                     <img src="assets/images/pizza_3.jpg">
 
@@ -105,11 +122,25 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div>-->
+
         </div>
     </div>
 
 </div>
+
+    <div class="panel-right">
+        <div class="left-block">
+            Замовлення
+            <span class="tag">1</span>
+            <span>Очистити замовлення</span>
+        </div>
+        <div class="order-list">
+        </div>
+        <div class="buy-block">
+            <button class="btn btn-warning">Замовити</button>
+        </div>
+    </div>
 
 <div class="footer">
     <p>Pizza.22 - практичний проект в межах курсу JavaScript в Києво-Могилянській Академії</p>
