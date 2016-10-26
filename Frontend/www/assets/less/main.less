@@ -12,17 +12,6 @@ body {
     background-color: #FFFFF5;
 }
 
-.panel-right {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 300px;
-    height: 100%;
-    background-color: #fff;
-    z-index: 99999;
-}
-
 .main-content {
     margin-top: 100px;
     margin-right: 320px;
@@ -41,6 +30,8 @@ body {
         background-color: @color_style;
     }
 }
+
+
 
 .ad-inform {
     padding-top: 17px;
@@ -75,28 +66,15 @@ body {
 
 /*>>>TOP NAVIGATION (PIZZA'S FILTER)*/
 .pizzas-filters {
+    margin-top: 150px;
     margin-bottom: 40px;
     h2{
         text-align: center;
     }
 }
 
-.pizzas-filters h2>span{
-    margin-top: -10px;
-}
-
-.tag {
+.badge {
     background-color: @color_style;
-    color: white;
-    display: inline-block;
-    font-size: 12px!important;
-    font-weight: bold;
-    padding: 3px 7px;
-    min-width: 10px;
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
-    top: -5px;
 }
 
 .pizza-type > ul {
@@ -109,8 +87,7 @@ body {
 .pizza-type  ul  li {
     display: inline-block;
     cursor: pointer;
-    padding: 7px;
-    padding-bottom: 12px;
+    padding-bottom: 20px;
     a {
         color: @color_style;
         text-decoration: none;
@@ -206,21 +183,94 @@ body {
 /**>>>BRAND-LABEL*/
 
 /**>>>RIGHT PANEL**/
+
+
+.panel-right {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    z-index: 99999;
+    box-shadow: rgba(0,0,0,.2) -3px 3px 10px;
+
+    .price.label {
+        padding-left: 0!important;
+        }
+
+    .pizza-ordered-card {
+        position: relative;
+        padding: 20px 61px 10px 24px;
+        height: 120px;
+        border-bottom: 1px solid #F2EDED;
+        .btn-circle {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+        }
+
+        .pizza-header {
+            margin-bottom: 10px;
+            h4 {
+                margin: 0;
+                padding: 0;
+                color: @color_style;
+            }
+            .pizza-attribute {
+                img:nth-of-type(2){
+                    margin-left: 20px;
+                }
+                img {
+                    margin-right: 3px;
+                }
+            }
+
+
+        }
+
+        .btn-delete {
+            margin-left: 20px;
+        }
+
+        .label {
+            color: black;
+            font-size: 14px;
+        }
+
+        .pizza-image {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            top: 10px;
+            right: -50px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+}
+
+
 .left-block {
     padding-left: 20px;
     padding-top: 30px;
     padding-bottom: 30px;
     font-size: 15px;
     font-weight: bold;
-    .tag {
-        margin-right: 25px;
-    }
+    border-bottom: 1px solid #F2EDED;
     :last-child {
         font-size: 11px;
         font-weight: normal;
         color: #D6CFCF;
+        cursor: pointer;
     }
-
+    .badge {
+        margin-right: 20px;
+    }
 }
 
 
@@ -233,6 +283,7 @@ body {
     position: absolute;
     bottom: 0;
     background-color: #fff;
+    border-top: 1px solid #F2EDED;
     button {
         width: 220px;
         height: 40px;
