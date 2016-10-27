@@ -17,7 +17,15 @@ $(function(){
         PizzaMenu.initialiseMenu(pizza_list);
     });
 
-    $(".order-button").click(function(){
+    $(".order-button").click(function() {
+        window.location = "/order.html";
+    });
+
+    $(".edit-button").click(function(){
+        window.location = "/";
+    });
+
+    /*$("#order-button").click(function(){
         API.createOrder({
             name: "Andrii",
             phone: "Phone",
@@ -28,7 +36,27 @@ $(function(){
             } else {
                 window.location = "/order.html";
                 //alert("Order created");
-            }
+                LiqPayCheckout.init({
+                    data:   result.data,
+                    signature:  result.signature,
+                    embedTo:    "#liqpay",
+                    mode:   "popup" //  embed   ||  popup
+                }).on("liqpay.callback",
+                    function(data){
+                        console.log(data.status);
+                        console.log(data);
+                    }).on("liqpay.ready",
+                        function(data){
+                        //  ready
+                        }).on("liqpay.close",   function(data){
+                        //  close
+                        });
+                }
         });
-    });
+    });*/
+
+
+
+    require('./googleMap');
+    require("./validation.js")
 });

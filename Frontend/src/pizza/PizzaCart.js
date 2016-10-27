@@ -124,7 +124,7 @@ function updateCart() {
 function updatePrice() {
     var price = 0;
     Cart.forEach(function(pizza){
-        price+= (pizza["pizza"][pizza["size"]]["price"]) * pizza.quantity;
+        price+= (pizza["pizza"] [pizza["size"] ]["price"]) * pizza.quantity;
     });
     $(".sum_price").text(price);
 }

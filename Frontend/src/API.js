@@ -24,6 +24,7 @@ function backendPost(url, data, callback) {
         contentType : 'application/json',
         data: JSON.stringify(data),
         success: function(data){
+            
             callback(null, data);
         },
         fail: function() {
