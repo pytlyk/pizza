@@ -30,6 +30,7 @@ function backendPost(url, data, callback) {
         },
         fail: function() {
             callback(new Error("Ajax Failed"));
+            console.log ("error((");
         }
     })
 }
@@ -83,6 +84,7 @@ $(function(){
     var PizzaCart = require('./pizza/PizzaCart');
 
     var API = require('./API');
+    var Validation = require("./validation")
 
     API.getPizzaList(function(err, pizza_list){
         if(err) {
@@ -100,43 +102,45 @@ $(function(){
         window.location = "/";
     });
 
-    /*$("#order-button").click(function(){
-        API.createOrder({
-            name: "Andrii",
-            phone: "Phone",
-            pizza: PizzaCart.getPizzaInCart()
-        }, function(err, result){
-            if(err) {
-                alert("Can't create order");
-            } else {
-                window.location = "/order.html";
-                //alert("Order created");
-                LiqPayCheckout.init({
-                    data:   result.data,
-                    signature:  result.signature,
-                    embedTo:    "#liqpay",
-                    mode:   "popup" //  embed   ||  popup
-                }).on("liqpay.callback",
-                    function(data){
-                        console.log(data.status);
-                        console.log(data);
-                    }).on("liqpay.ready",
+    $(".next-step-button").click(function(){
+        if (Validation.correctInput()) {
+            API.createOrder({
+                name: $("#inputName").val(),
+                phone: $("#inputPhone").val(),
+                address: $("#inputAddress").val(),
+                pizza: PizzaCart.getPizzaInCart()
+            }, function(err, result){
+                if(err) {
+                    alert("Can't create order");
+                } else {
+                    alert("Order created");
+                    //window.location = "/order.html";
+                    /*LiqPayCheckout.init({
+                        data:   result.data,
+                        signature:  result.signature,
+                        embedTo:    "#liqpay",
+                        mode:   "popup" //  embed   ||  popup
+                    }).on("liqpay.callback",
                         function(data){
-                        //  ready
-                        }).on("liqpay.close",   function(data){
-                        //  close
-                        });
+                            console.log(data.status);
+                            console.log(data);
+                        }).on("liqpay.ready",
+                            function(data){
+                            //  ready
+                            }).on("liqpay.close",   function(data){
+                            //  close
+                            });*/
                 }
-        });
-    });*/
+            });
+        }
+    });
 
 
 
     require('./googleMap');
-    require("./validation.js")
 });
 
-},{"./API":1,"./googleMap":3,"./pizza/PizzaCart":5,"./pizza/PizzaMenu":6,"./validation.js":8}],5:[function(require,module,exports){
+},{"./API":1,"./googleMap":3,"./pizza/PizzaCart":5,"./pizza/PizzaMenu":6,"./validation":8}],5:[function(require,module,exports){
 /**
  * Created by chaika on 02.02.16.
  */
@@ -381,13 +385,17 @@ exports.set = function(key, value)  {
     return  basil.set(key,  value);
 };
 },{"basil.js":9}],8:[function(require,module,exports){
+var validation_result = [false, false, false];
+
 $("#inputName").keyup(function(){
   setTimeout(function(){
     var name = $("#inputName").val();
-    if (!/^[a-zA-Z ]+$/.test(name)) {
+    if (!/[A-zА-я\s']+$/.test(name)) {
       $(".name-help-block").css("display", "inline-block");
+      validation_result[0] = false;
     } else {
       $(".name-help-block").css("display", "none");
+      validation_result[0] = true;
     }
   }, 2 * 1000);
 });
@@ -397,23 +405,39 @@ $("#inputPhone").keyup(function(){
     var phone = $("#inputPhone").val();
     if (phone.length != 13 || phone.slice(0,4) !== "+380") {
       $(".telephone-help-block").css("display", "inline-block");
+      validation_result[1] = false;
     } else {
       $(".telephone-help-block").css("display", "none");
+      validation_result[1] = true;
     }
   }, 2 * 1000);
 });
 
 $("#inputAddress").keyup(function(){
   setTimeout(function(){
-    var re = /^[a-zA-Z\s\d\/]*\d[a-zA-Z\s\d\/]*$/;
+    var re = /[A-zА-я\s0-9'єЄ]+$/;
     var address = $("#inputAddress").val();
     if (!re.test(address)) {
       $(".address-help-block").css("display", "inline-block");
+      validation_result[2] = false;
     } else {
       $(".address-help-block").css("display", "none");
+      validation_result[2] = true;
     }
   }, 2 * 1000);
 });
+
+function correctInput() {
+  var result = true;
+  validation_result.forEach(function(input) {
+    if (!input) {
+      result = false;
+    }
+  });
+  return result;
+}
+
+exports.correctInput = correctInput;
 },{}],9:[function(require,module,exports){
 (function () {
 	// Basil

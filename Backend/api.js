@@ -23,7 +23,7 @@ exports.createOrder = function(req, res) {
     var order_info = req.body;
     console.log("Creating Order", order_info);
 
-    var order = {
+    /*var order = {
         version: 3,
         public_key: i35565441927,
         action: "pay",
@@ -33,14 +33,14 @@ exports.createOrder = function(req, res) {
         order_id: Math.random(),
         //!!!Важливо щоб було 1, бо інакше візьме гроші!!
         sandbox: 1
-    };
-    var data = base64(JSON.stringify(order));
-    var signature = sha1(rB4u8bHChJmIL7UAxPcWWzSwVEvtGLwSXiY5YT0l + data + rB4u8bHChJmIL7UAxPcWWzSwVEvtGLwSXiY5YT0l);
+    };*/
+    //var data = base64(JSON.stringify(order));
+    //var signature = sha1(rB4u8bHChJmIL7UAxPcWWzSwVEvtGLwSXiY5YT0l + data + rB4u8bHChJmIL7UAxPcWWzSwVEvtGLwSXiY5YT0l);
 
 
     res.send({
         success: true,
-        data: data,
-        signature: signature
+        /*data: data,
+        signature: signature*/
     });
 };

@@ -8,6 +8,7 @@ $(function(){
     var PizzaCart = require('./pizza/PizzaCart');
 
     var API = require('./API');
+    var Validation = require("./validation")
 
     API.getPizzaList(function(err, pizza_list){
         if(err) {
@@ -25,38 +26,40 @@ $(function(){
         window.location = "/";
     });
 
-    /*$("#order-button").click(function(){
-        API.createOrder({
-            name: "Andrii",
-            phone: "Phone",
-            pizza: PizzaCart.getPizzaInCart()
-        }, function(err, result){
-            if(err) {
-                alert("Can't create order");
-            } else {
-                window.location = "/order.html";
-                //alert("Order created");
-                LiqPayCheckout.init({
-                    data:   result.data,
-                    signature:  result.signature,
-                    embedTo:    "#liqpay",
-                    mode:   "popup" //  embed   ||  popup
-                }).on("liqpay.callback",
-                    function(data){
-                        console.log(data.status);
-                        console.log(data);
-                    }).on("liqpay.ready",
+    $(".next-step-button").click(function(){
+        if (Validation.correctInput()) {
+            API.createOrder({
+                name: $("#inputName").val(),
+                phone: $("#inputPhone").val(),
+                address: $("#inputAddress").val(),
+                pizza: PizzaCart.getPizzaInCart()
+            }, function(err, result){
+                if(err) {
+                    alert("Can't create order");
+                } else {
+                    alert("Order created");
+                    //window.location = "/order.html";
+                    /*LiqPayCheckout.init({
+                        data:   result.data,
+                        signature:  result.signature,
+                        embedTo:    "#liqpay",
+                        mode:   "popup" //  embed   ||  popup
+                    }).on("liqpay.callback",
                         function(data){
-                        //  ready
-                        }).on("liqpay.close",   function(data){
-                        //  close
-                        });
+                            console.log(data.status);
+                            console.log(data);
+                        }).on("liqpay.ready",
+                            function(data){
+                            //  ready
+                            }).on("liqpay.close",   function(data){
+                            //  close
+                            });*/
                 }
-        });
-    });*/
+            });
+        }
+    });
 
 
 
     require('./googleMap');
-    require("./validation.js")
 });
