@@ -18,7 +18,6 @@ var $cart = $(".order-list");
 
 function addToCart(pizza, size) {
     //Додавання однієї піци в кошик покупок
-    console.log(size);
     //Приклад реалізації, можна робити будь-яким іншим способо
     var excistenPizza = pizza_excist(pizza, size);
     if (excistenPizza) {
@@ -109,6 +108,14 @@ function updateCart() {
     Cart.forEach(showOnePizzaInCart);
 
     $(".left-block .badge").text(Cart.length);
+
+    if (!Cart.length) {
+        $(".order-button").addClass("btn-block");
+        $(".order-button").prop("disabled", true);
+    } else {
+        $(".order-button").removeClass("btn-block");
+        $(".order-button").prop("disabled", false);
+    }
 
     Storage.set("cart", Cart);
     updatePrice();

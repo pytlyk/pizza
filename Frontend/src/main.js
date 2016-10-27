@@ -2,16 +2,33 @@
  * Created by chaika on 25.01.16.
  */
 
-$(document).ready(function(){
+$(function(){
     //This code will execute when the page is ready
     var PizzaMenu = require('./pizza/PizzaMenu');
     var PizzaCart = require('./pizza/PizzaCart');
-    var Pizza_List = require('./Pizza_List');
 
-    PizzaCart.initialiseCart();
-    PizzaMenu.initialiseMenu();
+    var API = require('./API');
 
-    PizzaMenu.select_pizza_type();
+    API.getPizzaList(function(err, pizza_list){
+        if(err) {
+            return console.error(err);
+        }
+        PizzaCart.initialiseCart();
+        PizzaMenu.initialiseMenu(pizza_list);
+    });
 
-
+    $(".order-button").click(function(){
+        API.createOrder({
+            name: "Andrii",
+            phone: "Phone",
+            pizza: PizzaCart.getPizzaInCart()
+        }, function(err, result){
+            if(err) {
+                alert("Can't create order");
+            } else {
+                window.location = "/order.html";
+                //alert("Order created");
+            }
+        });
+    });
 });

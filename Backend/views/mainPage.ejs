@@ -1,0 +1,35 @@
+<% include common/header.ejs %>
+
+<div class="container-fluid">
+
+    <div class="main-content">
+        <div class="pizzas-filters">
+            <div class="title">
+                <h2>
+                <span id="type-title">Усі піци</span>
+                <span class="badge">8</span>
+                </h2>
+            </div>
+            <div class="pizza-type">
+                <ul>
+                    <li><a id="all" class="active" href="#">Усі</a></li>
+                    <li><a id="meat" href="#">М'ясні</a></li>
+                    <li><a id="pineapple" href="#">З ананасом</a></li>
+                    <li><a id="mushroom" href="#">З грибами</a></li>
+                    <li><a id="ocean" href="#">З морепродуктами</a></li>
+                    <li><a id="tomato" href="#">Вега</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row" id="pizza_list">
+            
+        </div>
+
+
+    </div>
+</div>
+
+<% include common/rightPanel.html %>
+
+<% include common/footer.ejs %>
