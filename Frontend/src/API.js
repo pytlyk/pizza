@@ -29,7 +29,6 @@ function backendPost(url, data, callback) {
         },
         fail: function() {
             callback(new Error("Ajax Failed"));
-            console.log ("error((");
         }
     })
 }
