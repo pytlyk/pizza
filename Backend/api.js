@@ -40,7 +40,7 @@ exports.createOrder = function(req, res) {
         currency: "UAH",
         description: "Name: " + order_info.name + "\n" + "Address: " + order_info.address + "\n" +
         "Phone: " + order_info.phone + "\n" + "Order: " + transaction_descript,
-        order_id: Math.random(),
+        order_id: Math.random()*100,
         //!!!Важливо щоб було 1, бо інакше візьме гроші!!
         sandbox: 1
     };

@@ -240,12 +240,14 @@ $(function(){
                         embedTo: "#liqpay",
                         mode: "popup"
                     }).on("liqpay.callback", function (data) {
-                        console.log(data.status);
-                        console.log(data);
+                        //console.log(data.status);
+                        //console.log(data);
+                        if(data.status==="success" || data.status==="sandbox"){
+                            alert("Оплата успішна");
+                            //window.location = "/";
+                        }
                     }).on("liqpay.ready", function (data) {
                     }).on("liqpay.close", function (data) {
-                        window.location = "/";
-                        alert("Оплата успішна!");
                     });
                 }
             });
